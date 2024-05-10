@@ -15,6 +15,8 @@ $ npm install
 # development
 $ npm run start
 
+App is availabe on http://localhost:3000/
+
 # watch mode
 $ npm run start:dev
 
