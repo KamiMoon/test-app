@@ -8,28 +8,17 @@ import { CategoryDto } from './dto/category.dto';
 export class CategoriesService {
     constructor(private prisma: PrismaService) { }
 
-
-    //   async users(params: {
-    //     skip?: number;
-    //     take?: number;
-    //     cursor?: Prisma.UserWhereUniqueInput;
-    //     where?: Prisma.UserWhereInput;
-    //     orderBy?: Prisma.UserOrderByWithRelationInput;
-    //   }): Promise<User[]> {
-    //     const { skip, take, cursor, where, orderBy } = params;
-    //     return this.prisma.user.findMany({
-    //       skip,
-    //       take,
-    //       cursor,
-    //       where,
-    //       orderBy,
-    //     });
-    //   }
-
     async findAll(): Promise<CategoryDto[]> {
         return this.prisma.categories.findMany();
     }
 
+    async findOne(id: number): Promise<CategoryDto> {
+        return this.prisma.categories.findUnique({
+            where: {
+                id,
+            },
+        });
+    }
 
     async create(data: CreateCategoryDto): Promise<categories> {
         return this.prisma.categories.create({
@@ -37,20 +26,22 @@ export class CategoriesService {
         });
     }
 
-    //   async updateUser(params: {
-    //     where: Prisma.UserWhereUniqueInput;
-    //     data: Prisma.UserUpdateInput;
-    //   }): Promise<User> {
-    //     const { where, data } = params;
-    //     return this.prisma.user.update({
-    //       data,
-    //       where,
-    //     });
-    //   }
+    async update(id: number, data: CreateCategoryDto): Promise<categories> {
+        return this.prisma.categories.update({
+            where: {
+                id,
+            },
+            data
+        });
+    }
 
-    //   async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
-    //     return this.prisma.user.delete({
-    //       where,
-    //     });
-    //   }
+    async remove(id: number) {
+        return this.prisma.categories.delete({
+            where: {
+                id,
+            },
+        })
+    }
+
+
 }
