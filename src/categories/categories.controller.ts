@@ -11,6 +11,12 @@ export class CategoriesController {
     create(@Body() body: CreateCategoryDto): Promise<CategoryDto> {
         return this.categoriesService.create(body);
     }
+
+    @Get()
+    findAll(): Promise<CategoryDto[]> {
+        return this.categoriesService.findAll();
+    }
+
     /*
         @Get()
         findAll() {
